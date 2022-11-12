@@ -1,0 +1,26 @@
+<!-- タイトルテンプレート -->
+<!-- ページのタイトルを表示 -->
+<!-- タイトルとナビゲーションボタン -->
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Record of your Book</h1><br>
+            <p class="lead text-muted">本の記録を共有しませんか？</p>
+            <p class="lead text-muted">素敵な本の投稿お待ちしております</p>
+            <p>
+                <!-- ナビボタン -->
+                {% if user.is_authenticated %}
+                <!-- ログイン中 -->
+                <a href="{% url 'BookRecord:post' %}" class="btn btn-primary my-2 bg-success">投稿する</a>
+                <a href="{% url 'accounts:logout' %}" class="btn btn-primary my-2 bg-success">ログアウト</a>
+
+                <!-- ログインではない状態の場合 -->
+                {% else %}
+                <a href="{% url 'accounts:signup' %}" class="btn btn-primary my-2 bg-success">新規登録</a>
+                <a href="{% url 'accounts:login' %}" class="btn btn-primary my-2 bg-success">ログイン</a>
+                {% endif %}
+            </p>
+
+        </div>
+    </div>
+</section>

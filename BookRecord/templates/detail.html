@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Detail{% endblock %}
+
+    {% block contents %}
+    <!-- グリッドシステム -->
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-3">
+                <!-- タイトル -->
+                <h2><u>{{ object.title }}</u></h2>
+                <!-- 著者 -->
+                <p>著者: {{ object.author }}　　　　出版社: {{ object.publisher }}</p>
+                <!-- １枚目の写真 -->
+                <p><img src="{{ object.image1.url }}" class="image-vw"></p>
+
+                <!-- コメント　-->
+                <p>{{ object.comment }}</p>
+                <br>
+                　<!-- 投稿日時 -->
+                <p>{{ object.posted_at }}</p>
+
+
+
+            <!-- 投稿写真がログイン中のユーザーのものであれば削除ボタンを表示 -->
+            {%  if request.user == object.user %}
+            <form method="POST">
+                <!-- リンク先のURL
+                        photo/<Photo postsテーブルのid値>/detail/-->
+                <a href="{% url 'BookRecord:book_delete' object.pk %}"
+                   class="btn btn-primary my-2">削除する</a>
+            {% endif %}
+            </form>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
